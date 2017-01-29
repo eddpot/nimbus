@@ -1,0 +1,361 @@
+body{
+      font-family: 'Open Sans', sans-serif!important;
+      }
+
+#playlist_container{
+	width:90%;
+	margin:0 auto;
+
+
+}
+	.player{
+	 width:100%;
+	 border-bottom:1px solid #cccccc;
+     cursor:pointer;
+	
+	}
+	
+	.infoPanel{
+		padding:20px;
+		float:left;
+	}
+.thumbholder, .uploader, .track_name, .track_length, .artist_likes, .artist_tracks, .track_age, .share_tracks{
+	display:inline-block;
+	padding:5px;
+overflow:hidden;
+vertical-align: middle;
+min-width:10px;
+}
+.track_name{
+ font-weight:bold;
+}
+.thumb{
+	width:50px;
+}
+.thumbholder{
+    position: relative;
+}
+.uploader{
+	width:20%;
+}
+.track_name{
+	width:46%;
+}
+.track_length{
+	width:80px;
+}
+.track_age{
+    width:63px
+}
+.artist_likes, .artist_tracks, .share_tracks{
+	cursor:pointer;
+     width:3%;
+}
+
+#spinner{
+ width:75px;   
+}
+.player:nth-child(odd){
+/*	background-color:#ededed;*/
+}
+
+.active:nth-child(n){
+	border:2px solid #FF6600;
+	background-color:#FF6600;
+	color:#fff;
+}
+
+
+body{
+	white-space: nowrap;
+
+}
+.show_track{
+	margin-bottom:-5px;
+}
+
+#route{
+    text-align:center;
+}
+/*range slider css*/
+.range {
+    display: table;
+    position: relative;
+     height: 30px;
+    margin: 6px auto;
+    background-color: rgb(245, 245, 245);
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    width:285px;
+    
+}
+
+.range input[type="range"] {
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    -ms-appearance: none !important;
+    -o-appearance: none !important;
+    appearance: none !important;
+
+    display: table-cell;
+    width: 100%;
+    background-color: transparent;
+    height: 30px;
+    cursor: pointer;
+}
+.range input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    -ms-appearance: none !important;
+    -o-appearance: none !important;
+    appearance: none !important;
+
+    width: 11px;
+    height: 30px;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0px;
+    background-color: #FF6600;
+}
+
+.range input[type="range"]::-moz-slider-thumb {
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    -ms-appearance: none !important;
+    -o-appearance: none !important;
+    appearance: none !important;
+    
+    width: 11px;
+    height:30px;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0px;
+    background-color: #FF6600;
+}
+
+.range output {
+    display: table-cell;
+    padding: 3px 5px 2px;
+    min-width: 40px;
+    color: rgb(255, 255, 255);
+     background-color:#FF6600;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 4px;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    width: 1%;
+    white-space: nowrap;
+    vertical-align: middle;
+    border-left: 1px solid #cc5200;
+
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: -moz-none;
+    -o-user-select: none;
+    user-select: none;
+}
+.range input[type="range"] {
+    outline: none;
+}
+
+.rangeinput[type="range"]::-webkit-slider-thumb {
+    background-color: #FF6600;
+}
+.range input[type="range"]::-moz-slider-thumb {
+    background-color: #FF6600;
+}
+.range output {
+    background-color: #FF6600;
+}
+.range input[type="range"] {
+    outline-color: #FF6600;
+}
+output::after{content:" min";}
+/*range finder css end */
+#footer_player{
+	border-top:2px solid #cc5200;
+
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 140px;
+    background-color: #f5f5f5;
+}
+
+#more_container{
+	padding-bottom:140px;
+	text-align: center;
+}
+
+#more{
+        margin: 5px;
+        background-color:#cc5200;
+        color:#fff;
+}
+
+#more:hover{
+        
+        background-color:#FF6600;
+}
+
+#controls{
+    width:90%;
+    margin: 0 auto;
+    padding: 5px 0 15px 0;
+    display:none;
+
+}
+
+#range_label{
+    position:absolute;
+    pointer-events:none;
+    top:4px;
+    left:4px;
+        color: #777;
+
+}
+
+#current_user{
+    display:inline-block;
+    margin: 0;
+padding: 0;
+list-style-type: none;
+text-align: center;
+}
+#current_user li{
+    display:inline-block;
+  
+    vertical-align: middle;
+}
+
+#current_user_list_type{
+    display:inline-block;
+    padding-left: 5px;
+}
+
+#current_user_avatar{
+    width:28px;
+    height:28px;
+}
+
+#current_user_username{
+    font-size:25px;
+    margin-bottom: 5px
+
+}
+#current_user_list_type .glyphicon{
+    font-size:25px;
+    padding:0 5px 0 5px;
+}
+
+#range_container{
+    display:inline-block;
+}
+
+
+#logged_in_username{
+    padding:4px 0px 0px 5px;
+    font-size:30px;
+}
+.navbar-left li{
+    cursor:pointer;
+}
+.glyphicon{
+        cursor: pointer;
+}
+
+.glyphicon:hover{
+        color:rgb(255, 102, 0);
+}
+
+
+#clipboard_alert{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    border: 2px solid;
+    outline: 2px solid #FF6600;
+    margin-left: -70px;
+    margin-top: -10px;
+    background-color: #FF6600;
+    font-weight: bold;
+    text-align: center;
+    padding: 3px;
+    color: #fff;
+    font-size: 12px;
+    display:none;
+ 
+}
+
+#disconnect{
+    
+    display:block;
+
+}
+
+.active .glyphicon:hover{
+    color:#000;
+}
+
+.player .glyphicon{
+    width:25px;
+}
+.history_back{
+    vertical-align: middle;
+}
+
+@media(max-width:767px){
+
+    .player{
+        font-size:12px;
+    }
+    .track_age{
+        display:none;
+    }
+    .track_name{
+        width:35%;
+    }
+    .artist_name{
+        width:25%;
+    }
+    .player .glyphicon{
+    width:20px;
+    }
+    .track_length{
+        width:60px;
+    }
+}
+
+.small_control{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    text-align:center;
+    background-color: transparent;
+    top: 5px;
+}
+
+.small_control .glyphicon{
+    font-size: 30px;
+    width: 100%;
+    padding-top: 7px;
+    color:#fff;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+.small_control .glyphicon:hover{
+    color:#fff;
+}
+
