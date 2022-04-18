@@ -8,7 +8,8 @@
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
   <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-	<script src="//connect.soundcloud.com/sdk.js"></script>
+<!--	<script src="//connect.soundcloud.com/sdk.js"></script>-->
+	<script src="https://connect.soundcloud.com/sdk.js"></script>
 	<script src="https://w.soundcloud.com/player/api.js"></script>
 	
 <!--  Compiled and minified CSS -->

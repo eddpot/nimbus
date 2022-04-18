@@ -57,6 +57,7 @@ $.getJSON('init.json',function(data){
 
  	widget.bind(SC.Widget.Events.PLAY, function () {
     	console.log("hi")
+			adjustVolume();
 			$('.small_control').empty()
 			$('.small_control').append('<i class="material-icons">pause</i>')
 	})
@@ -319,20 +320,14 @@ function loggedIn() {
 function loadTracks(route) {
 
 	setCookie('SCroute', route, 99);
-console.log(route)
-	
-	var xhttp = new XMLHttpRequest();
-	
-	xhttp.onreadystatechange = function() {
-    
-	    if (this.readyState == 4 && this.status == 200) {
-	    	
-	    	var data=JSON.parse(this.responseText)
-console.dir(data)
-	    	if (route.substring(0, 7) == '/users/') {
+
+	SC.get(route, properties, function (data) {
+
+
+		if (route.substring(0, 7) == '/users/') {
 			setCurrentUser('/users/' + route.split("/")[2], route.split("/")[3]);
 			routeType = "user";
-			collection = data.collection;
+			collection = data;
 			properties = {
 				limit: 200
 			};
@@ -353,7 +348,7 @@ console.dir(data)
 
 			$('#playlist_container').empty();
 		}
-
+		console.dir(collection);
 		$.each(collection, function (index, value) {
 
 			if (routeType == "me" && value.origin != null) {
@@ -371,11 +366,15 @@ console.dir(data)
 
 
 			}
+//TODO:
+// the line below prevents listing reposts. this reduces the amount of shit in the feed but you also lose
+//some good stuff. ALSO IT BREAKS USER LIKES ENTIRELY.
+//                        if (embeddable_by == "all" && kind == "track" && value.type=='track') {
 
 			if (embeddable_by == "all" && kind == "track") {
 				//  console.dir(value.origin);
-				getStuff('/tracks/' + id, function (track) {
-
+				SC.get('/tracks/' + id, function (track) {
+console.dir(track)
 					created_at = track.created_at;
 					created_at = created_at.split(" ");
 					created_at = created_at[0];
@@ -447,7 +446,7 @@ console.dir(data)
 					ul.append(li1)
 					a1 = $("<a></a>").attr({
 						'class': 'btn-floating deep-orange userLikeLoad ',
-						'data-userId': track.user.id
+						'data-userId': track.user_id
 					})
 					li1.append(a1)
 					i1 = $("<i>grade</i>").attr({
@@ -458,7 +457,7 @@ console.dir(data)
 					ul.append(li2)
 					a2 = $("<a></a>").attr({
 						'class': 'btn-floating purple darken-2  userTrackLoad',
-						'data-userId': track.user.id
+						'data-userId': track.user_id
 					})
 					li2.append(a2)
 					i2 = $("<i>library_music</i>").attr({
@@ -512,14 +511,8 @@ console.dir(data)
 			$('#more_container').append("<button href='#' data-cursor='" + temp_prop['cursor'] + "' data-limit='" + temp_prop['limit'] + "' id='more' class='btn'>Load more tracks</button>");
 
 		}
-	    }
-	};
-xhttp.open("GET", "https://api.soundcloud.com"+route+"?limit=200&linked_partitioning=true", true);
-xhttp.setRequestHeader("accept", "application/json; charset=utf-8");
-xhttp.setRequestHeader("Authorization", "OAuth "+getCookie("SCaccess"));
-xhttp.send();
 
-
+	});
 
 
 }
@@ -534,7 +527,7 @@ function loadTrack(track_url, source) {
 		$('.small_control').append('<i class="material-icons">play_arrow</i>')
 	$('#playa').css("visibility","visible");
 	widget.load('http://api.soundcloud.com/tracks/'+track_url,{'show_artwork':true,'show_comments':true});
-		
+	adjustVolume();	
 		/*
 		SC.oEmbed(track_url, {
 		'maxheight': 160,
@@ -561,7 +554,7 @@ function loadTrack(track_url, source) {
 }
 
 function setLoggedUser() {
-	getStuff('/me', function (data) {
+	SC.get('/me', function (data) {
 		
 	loggedUser.username = data.username;
 	loggedUser.img = data.avatar_url;
@@ -592,26 +585,10 @@ function setLoggedUser() {
 
 }
 
-function getStuff(route,callback){
-
-	var xhttp = new XMLHttpRequest();
-		xhttp.onreadystatechange = function() {
-		    if (this.readyState == 4 && this.status == 200) {
-		      	var data=JSON.parse(this.responseText)
-				console.dir(data)
-				callback(data)
-		    }
-		};
-
-			xhttp.open("GET", "https://api.soundcloud.com"+route+"?limit=200&linked_partitioning=true", true);
-	xhttp.setRequestHeader("accept", "application/json; charset=utf-8");
-	xhttp.setRequestHeader("Authorization", "OAuth "+getCookie("SCaccess"));
-	xhttp.send();
-}
 function setCurrentUser(user_type, list_type) {
 
 
- 
+
 	if (user_type === "me") {
 		route = "/me";
 		$('#stream, .streamLoad').fadeIn('slow');
@@ -622,8 +599,7 @@ function setCurrentUser(user_type, list_type) {
 	}
 	currentUser.list_type = list_type
 
-
-	getStuff(route, function (data) {
+	SC.get(route, function (data) {
 
 		$('#tracks').parent().attr({
 			"data-UserId": data.id,
